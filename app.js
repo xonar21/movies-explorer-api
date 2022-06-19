@@ -16,6 +16,8 @@ const errHandler = require('./middlewares/errHandler');
 
 const error = require('./routes/error');
 
+const { registerValid, loginValid } = require('./middlewares/validation');
+
 const { login, createUser } = require('./controllers/users');
 
 const { requestLogger, errorLogger } = require('./middlewares/loger');
@@ -36,9 +38,9 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.post('/signup', createUser);
+app.post('/signup', registerValid, createUser);
 
-app.post('/signin', login);
+app.post('/signin', loginValid, login);
 
 mongoose.connect('mongodb://localhost:27017/bitfilmsdb', { useNewUrlParser: true });
 
