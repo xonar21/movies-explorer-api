@@ -9,7 +9,6 @@ const Forbidden = require('../errors/Forbidden');
 module.exports.deleteMovie = (req, res, next) => {
   const { id } = req.params;
   const userId = req.user._id;
-  console.log(id);
   Movie.findById({ _id: id })
     .orFail(() => {
       throw new ErrorNotFound(`Карточка с id ${id} не найдена!`);
@@ -31,11 +30,34 @@ module.exports.getMovies = (req, res, next) => {
 };
 
 module.exports.createMovie = (req, res, next) => {
-  const { country, director, duration, year, description, trailerLink, image, nameRU, nameEN, thumbnail, movieId } = req.body;
-console.log(req.user)
+  const {
+    country,
+    director,
+    duration,
+    year,
+    description,
+    trailerLink,
+    image, nameRU,
+    nameEN,
+    thumbnail,
+    movieId,
+  } = req.body;
   const ownerId = req.user._id;
 
-  Movie.create({ country, director, duration, year, description, image, trailerLink, nameRU, nameEN, thumbnail, movieId, owner: ownerId })
+  Movie.create({
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    nameRU,
+    nameEN,
+    thumbnail,
+    movieId,
+    owner: ownerId,
+  })
     .then((movies) => res.status(200).send(movies))
     .catch((err) => {
       if (err.name === 'ValidationError') {

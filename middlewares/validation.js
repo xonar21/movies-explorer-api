@@ -1,35 +1,25 @@
 const { celebrate, Joi, Segments } = require('celebrate');
 
-const validateUrl = (value, helpers) => {
-  const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)/;
-
-  if (!regex.test(value)) {
-    return helpers.error('Ссылка не валидна');
-  }
-  return value;
-};
-
-const registerValid = celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().custom(validateUrl),
-  }),
-});
-
-const loginValid = celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  }),
-});
-
 const userValid = celebrate({
   [Segments.BODY]: Joi.object().keys({
     name: Joi.string().min(2).max(30),
     email: Joi.string().required().email(),
+  }),
+});
+
+const movieValid = celebrate({
+  body: Joi.object().keys({
+    country: Joi.string().required().min(2).max(50),
+    director: Joi.string().required().min(2).max(50),
+    duration: Joi.number().required().min(1).max(10000),
+    year: Joi.string().required().min(1).max(10),
+    description: Joi.string().required().min(1).max(10000),
+    image: Joi.string().required().uri(),
+    trailerLink: Joi.string().required().uri(),
+    thumbnail: Joi.string().required().uri(),
+    movieId: Joi.number().required().min(1).max(50),
+    nameRU: Joi.string().required().min(1).max(50),
+    nameEN: Joi.string().required().min(1).max(50),
   }),
 });
 
@@ -40,8 +30,7 @@ const parameterIdValid = (nameId) => celebrate({
 });
 
 module.exports = {
-  registerValid,
-  loginValid,
+  movieValid,
   parameterIdValid,
   userValid,
 };

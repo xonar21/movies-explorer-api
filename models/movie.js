@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const bcrypt = require('bcryptjs');
-
 const { isURL } = require('validator');
 
 const movieSchema = new mongoose.Schema({
@@ -51,8 +49,8 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   movieId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'movie',
+    type: Number,
+    required: true,
   },
   nameRU: {
     type: String,

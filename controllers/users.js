@@ -47,7 +47,6 @@ module.exports.userInfo = (req, res, next) => {
     .catch(next);
 };
 
-
 module.exports.createUser = (req, res, next) => {
   const {
     name,
@@ -83,7 +82,9 @@ module.exports.createUser = (req, res, next) => {
 };
 
 module.exports.updateUser = (req, res, next) => {
+
   const { name, email } = req.body;
+
   User.findByIdAndUpdate(
     req.user._id,
     { name, email },
@@ -98,6 +99,8 @@ module.exports.updateUser = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ErrorBadRequest('Переданы некорректные данные при создании пользователя.'));
+      } else if (err.codeName === 'DuplicateKey') {
+        next(new ErrorConflict('Пользователь с таким email уже зарегистрирован'));
       } else {
         next(err);
       }

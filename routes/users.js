@@ -1,4 +1,4 @@
-const router = require('express').Router();
+const userRouter = require('express').Router();
 
 const {
   userValid,
@@ -10,7 +10,7 @@ const
     userInfo,
   } = require('../controllers/users');
 
-router.get('/me', userInfo);
-router.patch('/me', userValid, updateUser);
+userRouter.get('/me', userInfo);
+userRouter.patch('/me', userValid, updateUser);
 
-module.exports = router;
+module.exports = userRouter;
