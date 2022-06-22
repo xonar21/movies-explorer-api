@@ -16,7 +16,7 @@ const errHandler = require('./middlewares/errHandler');
 
 const routes = require('./routes');
 
-const limiter = require('./middlewares/limiter')
+const limiter = require('./middlewares/limiter');
 
 //const { registerValid, loginValid } = require('./middlewares/validation');
 

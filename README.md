@@ -1,3 +1,4 @@
 # movies-explorer-api
 
-Ссылка : https://bkmestoproject.nomoredomains.xyz/
+Ссылка : https://api.beatfilms.nomoreparties.sbs/
+
