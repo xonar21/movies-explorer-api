@@ -17,9 +17,9 @@ const movieValid = celebrate({
     image: Joi.string().required().uri(),
     trailerLink: Joi.string().required().uri(),
     thumbnail: Joi.string().required().uri(),
-    movieId: Joi.number().required().min(1).max(50),
-    nameRU: Joi.string().required().min(1).max(50),
-    nameEN: Joi.string().required().min(1).max(50),
+    movieId: Joi.number().required().min(1).max(100),
+    nameRU: Joi.string().required().min(1).max(70),
+    nameEN: Joi.string().required().min(1).max(70),
   }),
 });
 
