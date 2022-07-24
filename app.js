@@ -16,6 +16,8 @@ const errHandler = require('./middlewares/errHandler');
 
 const routes = require('./routes');
 
+const cors = require('./middlewares/cors');
+
 const limiter = require('./middlewares/limiter');
 
 //const { registerValid, loginValid } = require('./middlewares/validation');
@@ -39,6 +41,8 @@ app.use(helmet());
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cors);
 
 app.get('/crash-test', () => {
   setTimeout(() => {

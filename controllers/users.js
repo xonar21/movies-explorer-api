@@ -42,7 +42,7 @@ module.exports.userInfo = (req, res, next) => {
       if (!user._id) {
         next(new ErrorNotFound('Пользователь не найден'));
       }
-      res.status(200).send(user);
+      res.status(200).send({ data: user });
     })
     .catch(next);
 };
