@@ -26,7 +26,7 @@ const limiter = require('./middlewares/limiter');
 
 const { requestLogger, errorLogger } = require('./middlewares/loger');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 4000 } = process.env;
 
 const { DATA_BASE, NODE_ENV } = process.env;
 
@@ -50,15 +50,11 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-//app.post('/signup', registerValid, createUser);
-
-//app.post('/signin', loginValid, login);
-mongoose.connect(NODE_ENV === 'production' ? DATA_BASE : 'mongodb://localhost:27017/bitfilmsdb', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://xonar:sijc1980@cluster0.ambacu9.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true });
 
 app.use(routes);
 
 app.use(errorLogger);
-//app.use(auth);
 
 app.use(errors());
 
