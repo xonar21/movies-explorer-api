@@ -50,7 +50,7 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-mongoose.connect('mongodb+srv://xonar:sijc1980@cluster0.ambacu9.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://xonar:sijc1980@cluster0.wxfoyi1.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true });
 
 app.use(routes);
 
